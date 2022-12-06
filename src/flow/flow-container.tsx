@@ -1,17 +1,17 @@
 import * as React from 'react';
-import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges, updateEdge, Background, Connection, Controls, Edge, EdgeChange, Node, NodeChange, HandleType } from 'reactflow';
-import { VariableNode } from '../nodes/variable';
-
-import { BranchNode } from '../nodes/branch';
-import { HitNode } from './../nodes/events/hit';
+import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges, Background, Connection, Controls, Edge, EdgeChange, HandleType, NodeChange, updateEdge } from 'reactflow';
 import { connect } from 'react-redux';
 import { updateFlow } from '../state/flows';
+import { NodeTypes } from '../state/node-types';
+import VariableNode from '../nodes/variable';
+import { BranchNode } from '../nodes/branch';
+import HitNodeComponent from '../nodes/events/hit';
 
-const nodeTypes = {
-  'variable': VariableNode,
-  'branch': BranchNode,
-  'hit': HitNode
-}
+const flowNodeTypes = {
+    [NodeTypes.Variable]: VariableNode,
+    [NodeTypes.Branch]: BranchNode,
+    [NodeTypes.Hit]: HitNodeComponent
+  }
 
 interface State {
   selectedEdgeId: string | null;
@@ -51,9 +51,9 @@ class FlowContainer extends React.Component<Props, State> {
   }
 
   onEdgeUpdateEnd = (e: any, edge: Edge) => {
-    if (this.state.selectedEdgeId){
-      const edges = this.props.flow.edges.filter((e:Edge)=>e.id !== this.state.selectedEdgeId)
-      this.props.updateFlow({edges: edges});
+    if (this.state.selectedEdgeId) {
+      const edges = this.props.flow.edges.filter((e: Edge) => e.id !== this.state.selectedEdgeId)
+      this.props.updateFlow({ edges: edges });
     }
     this.setState({ selectedEdgeId: null });
   }
@@ -66,7 +66,7 @@ class FlowContainer extends React.Component<Props, State> {
   render() {
     return (
       <ReactFlow
-        nodeTypes={nodeTypes}
+        nodeTypes={flowNodeTypes}
         nodes={this.props.flow.nodes}
         edges={this.props.flow.edges}
         onNodesChange={this.onNodesChange}

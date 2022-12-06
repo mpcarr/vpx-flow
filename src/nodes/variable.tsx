@@ -1,6 +1,8 @@
 import { Box, TextField } from '@mui/material';
 import React from 'react';
+import { connect } from 'react-redux';
 import { Handle, NodeProps, Position } from 'reactflow';
+import { updateNodeData } from '../state/flows';
 import { NodeContainer } from './container';
 import { NodeHeader } from './header';
 import { OutputHandle } from './output-handle';
@@ -9,27 +11,26 @@ const handleStyle = { width: 24, height: 24, borderRadius: 12, top: '75%', right
 
 type NodeDataType = "string" | "number";
 
-interface State {
+interface State {}
+
+type Props = {
     value: string;
-    label: string;
-    type: NodeDataType
 }
 
-type Propsd = {
-    type: NodeDataType
+type VariableNodeProps<T=any> = NodeProps & {
+    updateNodeData: any
 }
-
-export class VariableNode extends React.Component<NodeProps<Propsd>, State> {
+class VariableNode extends React.Component<VariableNodeProps<Props>, State> {
 
     value: (number | string | undefined) = undefined;
 
-    constructor(props: NodeProps<Propsd>) {
+    constructor(props: VariableNodeProps<Props>) {
         super(props);
-        this.state = {
-            value: '',
-            label: `Variable - ${props.data.type}`,
-            type: props.data.type
-        }
+        this.state = {}
+    }
+
+    public static compile = () => {
+        return {code:`Variable VBS`, type: "inline"};
     }
 
     onDataValueChange = (e: any) => {
@@ -39,18 +40,24 @@ export class VariableNode extends React.Component<NodeProps<Propsd>, State> {
         })
     }
 
-    compile = () => {
-        return `Dim x : x = ${this.state.type == 'string' ? '"' + this.state.value + '"' : this.state.value}`
-    }
-
     render() {
         return (<>
             <NodeContainer color="slate" header={<NodeHeader label="Variable" color="slate" />}>
                 <Box>                        
-                    <TextField type="text" className='bg-white' label="Filled" variant="filled" value={this.state.value} onChange={this.onDataValueChange} />
+                    <TextField type="text" className='bg-white' label="Value" variant="filled" value={this.props.data.value} onChange={(e)=>{this.props.updateNodeData({id: this.props.id, value: e.target.value})}} />
                 </Box>
             </NodeContainer>
            <OutputHandle id="output"/>
             </>);
     }
 }
+
+const mapStateToProps = (state: any) => ({
+    
+})
+
+const VariableNodeComponent = connect(mapStateToProps, {
+    updateNodeData
+})(VariableNode)
+
+export default VariableNodeComponent

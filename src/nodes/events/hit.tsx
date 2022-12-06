@@ -1,47 +1,49 @@
-import { Box, Stack, TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 import React from 'react';
-import { Handle, NodeProps, Position } from 'reactflow';
+import { connect } from 'react-redux';
+import { Node, NodeProps } from 'reactflow';
+import { updateNodeData } from '../../state/flows';
 import { NextHandle } from '../next-handle';
 import { NodeContainer } from './../container';
 import { NodeHeader } from './../header';
 
-type State = {
-    value: string
-}
-
+type State = {}
 
 type Props = {
-
+    value: string;
 }
 
+type HitNodeProps<T=any> = NodeProps & {
+    updateNodeData: any
+}
 
-export class HitNode extends React.Component<NodeProps<Props>, State> {
+class HitNode extends React.Component<HitNodeProps<Props>, State> {
 
-    constructor(props: NodeProps<Props>) {
+    constructor(props: HitNodeProps<Props>) {
         super(props);
-        this.state = {
-            value: ''
-        }
-    }
-
-    public static entryNode: boolean = true
-
-    onDataValueChange = (e: any) => {
-        const { value } = e.target;
-        this.setState({
-            value: value,
-        })
+        this.state = {}
     }
 
     render() {
+        console.log(this.props);
         return (<>
             <NodeContainer color="yellow" header={<NodeHeader label="Hit" color="yellow" />}>
                 <Box>                        
-                    <TextField type="text" className='bg-white' label="Filled" variant="filled" value={this.state.value} onChange={this.onDataValueChange} />
+                    <TextField type="text" className='bg-white' label="Filled" variant="filled" value={this.props.data.value} onChange={(e)=>{this.props.updateNodeData({id: this.props.id, value: e.target.value})}} />
                 </Box>
             </NodeContainer>
-            <NextHandle id="next" position="50%"/>
+            <NextHandle id="flowOut" position="50%"/>
             </>
         );
     }
 }
+
+const mapStateToProps = (state: any) => ({
+    
+})
+
+const HitNodeComponent = connect(mapStateToProps, {
+    updateNodeData
+})(HitNode)
+
+export default HitNodeComponent

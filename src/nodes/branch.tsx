@@ -1,17 +1,12 @@
 import { Box, Stack } from '@mui/material';
 import React from 'react';
-import { Handle, NodeProps, Position } from 'reactflow';
+import { NodeProps } from 'reactflow';
+import { NodeCompileType } from '../state/node-types';
 import { NodeContainer } from './container';
 import { DataHandle } from './data-handle';
 import { NodeHeader } from './header';
 import { InHandle } from './in-handle';
 import { NextHandle } from './next-handle';
-
-const flowInStyle = { width: 24, height: 24, borderRadius: 12, top: '48%', left: -12, };
-const conditionStyle = { width: 24, height: 24, borderRadius: 12, top: '76%', left: -12 };
-const flowTrueStyle = { width: 24, height: 24, borderRadius: 12, top: '48%', right: -12, };
-const flowFalseStyle = { width: 24, height: 24, borderRadius: 12, top: '76%', right: -12, };
-
 
 type NodeDataType = "string" | "number";
 
@@ -38,22 +33,19 @@ export class BranchNode extends React.Component<NodeProps<Propsd>, State> {
         }
     }
 
+    public static compile = () => {
+        return { code: `If condition = True Then
+        FlowTrue
+    Else
+        FlowFalse
+    End If`, type: 'inline'};
+    }
+
     onDataValueChange = (e: any) => {
         const { value } = e.target;
         this.setState({
             value: value,
         })
-    }
-
-    compile = () => {
-
-        const vbs = `If condition = True Then
-    FlowTrue
-Else
-    FlowFalse
-End If`;
-        //console.log(vbs)
-        return vbs;
     }
 
     render() {
@@ -78,8 +70,8 @@ End If`;
                 </NodeContainer>
                 <InHandle id="flowIn" position="52%" />
                 <DataHandle id="dataIn" position="80%" />
-                <NextHandle id="nextTrue" position="52%" />
-                <NextHandle id="nextFalse" position="80%" />
+                <NextHandle id="flowOutTrue" position="52%" />
+                <NextHandle id="flowOutFalse" position="80%" />
             </>);
     }
 }
