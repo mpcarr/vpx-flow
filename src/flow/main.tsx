@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import FlowContainer  from './flow-container';
 import { addFlow, addNodeToFlow, deleteFlow } from '../state/flows';
 import FlowCodeView from './flow-code-view';
+import { SketchPicker } from 'react-color';
 
 interface State {
     openTabs: Array<{ label: string }>;

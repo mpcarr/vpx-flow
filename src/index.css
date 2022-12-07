@@ -17,3 +17,15 @@ html,body,#root{
     stroke-width: 6;
     stroke: blueviolet;
 }
+
+.react-flow__node{
+    cursor: default !important;
+}
+
+.node-drag-header{
+    cursor: grab !important;
+}
+
+.react-flow__handle{
+    position: relative;
+}

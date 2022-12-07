@@ -30,7 +30,7 @@ const flowsSlice = createSlice({
     },
     addNodeToFlow(state:any, action:any) {
       const flow = state.flows.find((flow:any) => flow.id === "flow")
-      flow.nodes.push({ id: `${action.payload.type}${flow.nodes.length+1}`, type: action.payload.type, position: { x: 0, y: 0 }, data: {} })
+      flow.nodes.push({ id: `${action.payload.type}${flow.nodes.length+1}`, dragHandle: '.node-drag-header', type: action.payload.type, position: { x: 0, y: 0 }, data: {} })
     },
     updateFlow(state:any, action:any) {
       const flow = state.flows.find((flow:any) => flow.id === "flow")

@@ -7,6 +7,7 @@ const initialState = [
   {label: "Hit", type: NodeTypes.Hit},
   {label: "CreateGameState", type: NodeTypes.CreateGameState},
   {label: "LightOn", type: NodeTypes.LightOn},
+  {label: "LightSet", type: NodeTypes.LightSet},
 ];
 
 const nodesSlice = createSlice({

@@ -3,7 +3,8 @@ export enum NodeTypes {
     Branch = "branch",
     Hit = "hit",
     CreateGameState = "createGameState",
-    LightOn = "lightOn"
+    LightOn = "lightOn",
+    LightSet = "lightSet"
 }
 
 export enum NodeCompileType {
