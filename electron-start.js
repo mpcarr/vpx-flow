@@ -1,4 +1,8 @@
 const electron = require('electron');
+const { ipcMain } = require('electron');
+
+const expressApp = require('./backend/app');
+
 // Module to control application life.
 const app = electron.app;
 // Module to create native browser window.
@@ -17,7 +21,7 @@ function createWindow() {
 
     // and load the index.html of the app.
     mainWindow.loadURL('http://localhost:3000');
-
+    mainWindow.title="VPXNode";
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
 

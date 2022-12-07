@@ -6,11 +6,15 @@ import { NodeTypes } from '../state/node-types';
 import VariableNode from '../nodes/variable';
 import { BranchNode } from '../nodes/branch';
 import HitNodeComponent from '../nodes/events/hit';
+import CreateGameStateNodeComponent from '../nodes/game-state/create-game-state';
+import LightOnNodeComponent from './../nodes/lights/light-on';
 
 const flowNodeTypes = {
     [NodeTypes.Variable]: VariableNode,
     [NodeTypes.Branch]: BranchNode,
-    [NodeTypes.Hit]: HitNodeComponent
+    [NodeTypes.Hit]: HitNodeComponent,
+    [NodeTypes.CreateGameState]: CreateGameStateNodeComponent,
+    [NodeTypes.LightOn]: LightOnNodeComponent
   }
 
 interface State {

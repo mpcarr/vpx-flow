@@ -1,12 +1,9 @@
-import { BranchNode } from "../nodes/branch";
-import HitNode from "../nodes/events/hit";
-import VariableNode from "../nodes/variable";
-
-
-export enum NodeTypes{
+export enum NodeTypes {
     Variable = "variable",
     Branch = "branch",
-    Hit = "hit"
+    Hit = "hit",
+    CreateGameState = "createGameState",
+    LightOn = "lightOn"
 }
 
 export enum NodeCompileType {
