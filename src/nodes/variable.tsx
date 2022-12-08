@@ -5,7 +5,7 @@ import { Handle, NodeProps, Position } from 'reactflow';
 import { updateNodeData } from '../state/flows';
 import { NodeContainer } from './container';
 import { NodeHeader } from './header';
-import { OutputHandle } from './output-handle';
+import { OutputHandle } from './handles/output-handle';
 
 const handleStyle = { width: 24, height: 24, borderRadius: 12, top: '75%', right: -12 };
 
