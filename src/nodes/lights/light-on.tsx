@@ -40,8 +40,8 @@ class LightOnNode extends React.Component<LightOnNodeProps<Props>, State> {
                     <TextField type="text" className='bg-white' label="Name" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, value: e.target.value }) }} />
                 </Box>
             </NodeContainer>
-            <InHandle id="flowIn" position="50%" />
-            <NextHandle id="flowOut" position="50%" />
+            <InHandle id="flowIn" />
+            <NextHandle id="flowOut"/>
         </>);
     }
 }

@@ -34,11 +34,13 @@ export class BranchNode extends React.Component<NodeProps<Propsd>, State> {
     }
 
     public static compile = () => {
-        return { code: `If condition = True Then
+        return {
+            code: `If condition = True Then
         FlowTrue
     Else
         FlowFalse
-    End If`, type: 'inline'};
+    End If`, type: 'inline'
+        };
     }
 
     onDataValueChange = (e: any) => {
@@ -59,19 +61,26 @@ export class BranchNode extends React.Component<NodeProps<Propsd>, State> {
                             alignItems="flex-end"
                             spacing={2}
                         >
-                            <div className="w-full"><span className={`text-sm font-semibold m-2 py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-200`}>
-                                True
-                            </span></div>
-                            <div className="w-full"><span className={`text-sm font-semibold m-2 py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-200`}>
-                                False
-                            </span></div>
+                            <Stack direction={"row"} className="relative">
+                                <NextHandle id="flowOutTrue" />
+                                <div className="w-full"><span className={`text-sm font-semibold m-2 py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-200`}>
+                                    True
+                                </span></div>
+                            </Stack>
+                            <Stack direction={"row"} className="relative">
+                                <NextHandle id="flowOutFalse" />
+                                <div className="w-full"><span className={`text-sm font-semibold m-2 py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-200`}>
+                                    False
+                                </span></div>
+                            </Stack>
+
                         </Stack>
                     </Box>
                 </NodeContainer>
-                <InHandle id="flowIn" position="52%" />
-                <DataHandle id="dataIn" position="80%" />
-                <NextHandle id="flowOutTrue" position="52%" />
-                <NextHandle id="flowOutFalse" position="80%" />
+                <InHandle id="flowIn"/>
+                <DataHandle id="dataIn" />
+
+
             </>);
     }
 }

@@ -4,11 +4,9 @@ import { Handle, Position } from 'reactflow';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 type Props = {
-    id: string
-    position: string
-}
+    id: string}
 
-const handleStyle = { width: 24, height: 24, borderRadius: 12, borderWidth:2};
+const handleStyle = { width: 16, height: 16, borderRadius: 8, borderWidth:2, left: -30, top:"50%"};
 
 export class DataHandle extends React.Component<Props> {
 
@@ -18,7 +16,7 @@ export class DataHandle extends React.Component<Props> {
 
     render() {
         return ( 
-            <Handle id={this.props.id} type="target" position={Position.Left} style={{...handleStyle, top: this.props.position}} className="bg-red-400 border-red-700"/>
+            <Handle id={this.props.id} type="target" position={Position.Left} style={handleStyle} className="bg-red-400 border-red-700"/>
         );
     }
 }

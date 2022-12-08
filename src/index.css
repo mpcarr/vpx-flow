@@ -26,6 +26,6 @@ html,body,#root{
     cursor: grab !important;
 }
 
-.react-flow__handle{
+/* .react-flow__handle{
     position: relative;
-}
+} */

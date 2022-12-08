@@ -14,7 +14,7 @@ export class NodeHeader extends React.Component<Props> {
 
     render() {
         return (<>
-            <Box className={`node-drag-header flex flex-row bg-${this.props.color}-700 rounded-md`}>
+            <Box className={`node-drag-header rounded flex flex-row bg-${this.props.color}-700`}>
                 <span className={`text-sm font-semibold inline-block m-2 py-1 px-2 uppercase rounded-full text-${this.props.color}-600 bg-${this.props.color}-200 uppercase`}>
                     {this.props.label}
                 </span>

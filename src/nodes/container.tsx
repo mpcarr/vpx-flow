@@ -15,7 +15,7 @@ export class NodeContainer extends React.Component<Props> {
 
     render() {
         return (<>
-            <Box className={`rounded-md text-white bg-${this.props.color}-500`}>
+            <Box className={`rounded-md text-white bg-slate-300 border-4 border-slate-300`}>
                 {this.props.header}
                 <Box className='mx-6 py-4'>
                     {this.props.children}

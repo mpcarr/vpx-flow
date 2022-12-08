@@ -5,10 +5,9 @@ import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 type Props = {
     id: string
-    position: string;
 }
 
-const handleStyle = { width: 24, height: 24, borderRadius: 12, border: 0 };
+const handleStyle = { width: 24, height: 24, borderRadius: 12, border: 0, top: 65 };
 
 export class NextHandle extends React.Component<Props> {
 
@@ -18,7 +17,7 @@ export class NextHandle extends React.Component<Props> {
 
     render() {
         return ( 
-            <Handle id={this.props.id} type="source" position={Position.Right} style={{...handleStyle, top: this.props.position}}>
+            <Handle id={this.props.id} type="source" position={Position.Right} style={handleStyle}>
                 <ArrowCircleRightIcon style={{width:24, height:24, display:'block'}} className="pointer-events-none text-green-300"/>
             </Handle>
         );
