@@ -1,12 +1,12 @@
 import { Box, Stack } from '@mui/material';
 import React from 'react';
 import { NodeProps } from 'reactflow';
-import { NodeCompileType } from '../state/node-types';
-import { NodeContainer } from './container';
-import { DataHandle } from './handles/data-handle';
-import { NodeHeader } from './header';
-import { InHandle } from './handles/in-handle';
-import { NextHandle } from './handles/next-handle';
+import { NodeCompileType } from '../../state/node-types';
+import { NodeContainer } from '../container';
+import { DataHandle } from '../handles/data-handle';
+import { NodeHeader } from '../header';
+import { InHandle } from '../handles/in-handle';
+import { NextHandle } from '../handles/next-handle';
 
 type NodeDataType = "string" | "number";
 

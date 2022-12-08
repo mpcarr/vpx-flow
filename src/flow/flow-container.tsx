@@ -3,8 +3,8 @@ import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges, Background, Con
 import { connect } from 'react-redux';
 import { updateFlow } from '../state/flows';
 import { NodeTypes } from '../state/node-types';
-import VariableNode from '../nodes/variable';
-import { BranchNode } from '../nodes/branch';
+import VariableNode from '../nodes/variables/variable';
+import { BranchNode } from '../nodes/control/branch';
 import HitNodeComponent from '../nodes/events/hit';
 import LightOnNodeComponent from './../nodes/lights/light-on';
 import LightSetNodeComponent from './../nodes/lights/light-set';
