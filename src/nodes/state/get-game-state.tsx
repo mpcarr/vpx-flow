@@ -5,8 +5,8 @@ import { NodeProps } from 'reactflow';
 import { updateNodeData } from '../../state/flows';
 import { NodeContainer } from '../container';
 import { NodeHeader } from '../header';
-import { InHandle } from '../in-handle';
-import { NextHandle } from '../next-handle';
+import { InHandle } from '../handles/in-handle';
+import { NextHandle } from '../handles/next-handle';
 
 interface State { }
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Node, NodeProps } from 'reactflow';
 import { updateNodeData } from '../../state/flows';
-import { NextHandle } from '../next-handle';
+import { NextHandle } from '../handles/next-handle';
 import { NodeContainer } from './../container';
 import { NodeHeader } from './../header';
 

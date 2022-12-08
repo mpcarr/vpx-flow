@@ -3,10 +3,10 @@ import React from 'react';
 import { NodeProps } from 'reactflow';
 import { NodeCompileType } from '../state/node-types';
 import { NodeContainer } from './container';
-import { DataHandle } from './data-handle';
+import { DataHandle } from './handles/data-handle';
 import { NodeHeader } from './header';
-import { InHandle } from './in-handle';
-import { NextHandle } from './next-handle';
+import { InHandle } from './handles/in-handle';
+import { NextHandle } from './handles/next-handle';
 
 type NodeDataType = "string" | "number";
 
