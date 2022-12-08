@@ -13,13 +13,15 @@ type Props = {
     value: string;
 }
 
-type HitNodeProps<T=any> = NodeProps & {
+type TimerNodeProps<T=any> = NodeProps & {
     updateNodeData: any
 }
 
-class HitNode extends React.Component<HitNodeProps<Props>, State> {
+class TimerNode extends React.Component<TimerNodeProps<Props>, State> {
 
-    constructor(props: HitNodeProps<Props>) {
+    nodeColor = "purple"
+
+    constructor(props: TimerNodeProps<Props>) {
         super(props);
         this.state = {}
     }
@@ -27,9 +29,9 @@ class HitNode extends React.Component<HitNodeProps<Props>, State> {
     render() {
         console.log(this.props);
         return (<>
-            <NodeContainer color="yellow" header={<NodeHeader label="Hit" color="yellow" />}>
+            <NodeContainer color={this.nodeColor} header={<NodeHeader label="Timer" color={this.nodeColor} />}>
                 <Box>                        
-                    <TextField type="text" className='bg-white' label="Filled" variant="filled" value={this.props.data.value} onChange={(e)=>{this.props.updateNodeData({id: this.props.id, data: {value: e.target.value}})}} />
+                    <TextField type="text" fullWidth label="Filled" variant="filled" value={this.props.data.value} onChange={(e)=>{this.props.updateNodeData({id: this.props.id, data: {value: e.target.value}})}} />
                 </Box>
             </NodeContainer>
             <NextHandle id="flowOut"/>
@@ -42,8 +44,8 @@ const mapStateToProps = (state: any) => ({
     
 })
 
-const HitNodeComponent = connect(mapStateToProps, {
+const TimerNodeComponent = connect(mapStateToProps, {
     updateNodeData
-})(HitNode)
+})(TimerNode)
 
-export default HitNodeComponent
+export default TimerNodeComponent

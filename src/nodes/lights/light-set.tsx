@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Stack, TextField } from '@mui/material';
+import { Autocomplete, Box, FormControl, FormHelperText, Input, InputLabel, Stack, TextField } from '@mui/material';
 import React from 'react';
 import { connect } from 'react-redux';
 import { NodeProps } from 'reactflow';
@@ -44,53 +44,52 @@ class LightSetNode extends React.Component<LightSetNodeProps<Props>, State> {
         return (<>
             <NodeContainer color="blue" header={<NodeHeader label="Light Set" color="blue" />}>
                 <Box>
-                    <Stack className='mt-4'>
+                    <Stack className='mt-4' gap={1}>
                         <Stack direction={"row"} className="relative">
                             <DataHandle id="dataInLight" />
                             <Autocomplete
                                 disablePortal
+                                size='small'
                                 id="combo-box-demo"
                                 options={this.options}
                                 sx={{ width: 300 }}
-                                renderInput={(params) => <TextField {...params} variant="filled" className='bg-white' label="Light" />}
+                                value={this.props.data.light}
+                                onChange={(e, value) => { this.props.updateNodeData({ id: this.props.id, data: { light: value } }) }}
+                                renderInput={(params) => <TextField {...params} variant="filled" className='w-full' label="Light" />}
                             />
                             <OutputHandle id="outputLight" />
                         </Stack>
                         <Stack direction={"row"} className="relative">
                             <DataHandle id="dataInColor" />
-                            <div>
-                                <label htmlFor="color">Color</label>
-                                <input type="color" id="color" name="color"
-                                    value={this.props.data.color} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, color: e.target.value }) }} />
-                            </div>
+                            <Stack direction={'row'} className="w-full">
+                                <InputLabel className="w-4/12 self-center">Color</InputLabel>
+                                <Input id="color" type='color' fullWidth value={this.props.data.color} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, data: { color: e.target.value } }) }} />
+                            </Stack>
                         </Stack>
                         <Stack direction={"row"} className="relative">
                             <DataHandle id="dataInColor" />
-                            <div>
-                                <label htmlFor="colorFull">Color Full</label>
-                                <input type="color" id="colorFull" name="colorFull"
-                                    value={this.props.data.colorFull} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, colorFull: e.target.value }) }} />
-                            </div>
+                            <Stack direction={'row'} className="w-full">
+                                <InputLabel className="w-4/12 self-center">Color Full</InputLabel>
+                                <Input id="color-full" type='color' fullWidth value={this.props.data.colorFull} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, data: { colorFull: e.target.value } }) }} />
+                            </Stack>
                         </Stack>
                         <Stack direction={"row"} className="relative">
                             <DataHandle id="dataInBlinkPattern" />
-                            <TextField type="text" className='bg-white' label="Blink Pattern" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, value: e.target.value }) }} />
+                            <TextField size="small" type="text" className='w-full' label="Blink Pattern" variant="filled" value={this.props.data.blinkPattern} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, data: { blinkPattern: e.target.value } }) }} />
                         </Stack>
                         <Stack direction={"row"} className="relative">
                             <DataHandle id="dataInFadeUp" />
-                            <TextField type="text" className='bg-white' label="Fade Up" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, value: e.target.value }) }} />
+                            <TextField size="small" type="text" className='w-full' label="Fade Up" variant="filled" value={this.props.data.fadeUp} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, data: { fadeUp: e.target.value } }) }} />
                         </Stack>
                         <Stack direction={"row"} className="relative">
                             <DataHandle id="dataInFadeDown" />
-                            <TextField type="text" className='bg-white' label="Fade Down" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, value: e.target.value }) }} />
+                            <TextField size="small" type="text" className='w-full' label="Fade Down" variant="filled" value={this.props.data.fadeDown} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, data: { fadeDown: e.target.value } }) }} />
                         </Stack>
                     </Stack>
                 </Box>
             </NodeContainer>
-            <InHandle id="flowIn"/>
-            
+            <InHandle id="flowIn" />
             <NextHandle id="flowOut" />
-
         </>);
     }
 }

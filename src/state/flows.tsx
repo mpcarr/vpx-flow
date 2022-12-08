@@ -57,7 +57,7 @@ const flowsSlice = createSlice({
       const flow = state.flows.find((flow:any) => flow.id === "flow")
       const node = flow.nodes.find((node: Node) => node.id === action.payload.id);
       console.log(node)
-      node.data.value = action.payload.value;
+      node.data = {...node.data, ...action.payload.data};
       window.localStorage.setItem("flows", JSON.stringify(state));
     },
     deleteFlow(state:any, action:any) {

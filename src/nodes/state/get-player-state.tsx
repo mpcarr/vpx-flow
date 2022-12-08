@@ -14,14 +14,14 @@ type Props = {
     value: string;
 }
 
-type LightOnNodeProps<T = any> = NodeProps & {
+type GetPlayerStateNodeProps<T = any> = NodeProps & {
     updateNodeData: any
 }
-class LightOnNode extends React.Component<LightOnNodeProps<Props>, State> {
+class GetPlayerStateNode extends React.Component<GetPlayerStateNodeProps<Props>, State> {
 
     value: (number | string | undefined) = undefined;
 
-    constructor(props: LightOnNodeProps<Props>) {
+    constructor(props: GetPlayerStateNodeProps<Props>) {
         super(props);
         this.state = {}
     }
@@ -35,13 +35,13 @@ class LightOnNode extends React.Component<LightOnNodeProps<Props>, State> {
 
     render() {
         return (<>
-            <NodeContainer color="blue" header={<NodeHeader label="Light On" color="blue" />}>
+            <NodeContainer color="slate" header={<NodeHeader label="Get Player State" color="slate" />}>
                 <Box>
-                    <TextField type="text" className='bg-white' label="Name" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, data:{value: e.target.value }}) }} />
+                    <TextField type="text" className='bg-white' label="Name" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, value: e.target.value }) }} />
                 </Box>
             </NodeContainer>
-            <InHandle id="flowIn" />
-            <NextHandle id="flowOut"/>
+            <InHandle id="flowIn"/>
+            <NextHandle id="flowOut" />
         </>);
     }
 }
@@ -50,8 +50,8 @@ const mapStateToProps = (state: any) => ({
 
 })
 
-const LightOnNodeComponent = connect(mapStateToProps, {
+const GetPlayerStateNodeComponent = connect(mapStateToProps, {
     updateNodeData
-})(LightOnNode)
+})(GetPlayerStateNode)
 
-export default LightOnNodeComponent
+export default GetPlayerStateNodeComponent

@@ -54,7 +54,7 @@ export class BranchNode extends React.Component<NodeProps<Propsd>, State> {
         return (
             <>
                 <NodeContainer color="slate" header={<NodeHeader label="Branch" color="slate" />}>
-                    <Box className='pl-4'>
+                    <Box className=''>
                         <Stack
                             direction="column"
                             justifyContent="center"
@@ -62,25 +62,22 @@ export class BranchNode extends React.Component<NodeProps<Propsd>, State> {
                             spacing={2}
                         >
                             <Stack direction={"row"} className="relative">
-                                <NextHandle id="flowOutTrue" />
+                                <NextHandle id="flowOutTrue" inline={true} />
                                 <div className="w-full"><span className={`text-sm font-semibold m-2 py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-200`}>
                                     True
                                 </span></div>
                             </Stack>
                             <Stack direction={"row"} className="relative">
-                                <NextHandle id="flowOutFalse" />
+                                <NextHandle id="flowOutFalse" inline={true} />
                                 <div className="w-full"><span className={`text-sm font-semibold m-2 py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-200`}>
                                     False
                                 </span></div>
+                                <DataHandle id="dataIn" />
                             </Stack>
-
                         </Stack>
                     </Box>
                 </NodeContainer>
                 <InHandle id="flowIn"/>
-                <DataHandle id="dataIn" />
-
-
             </>);
     }
 }

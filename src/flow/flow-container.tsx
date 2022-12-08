@@ -6,17 +6,25 @@ import { NodeTypes } from '../state/node-types';
 import VariableNode from '../nodes/variable';
 import { BranchNode } from '../nodes/branch';
 import HitNodeComponent from '../nodes/events/hit';
-import CreateGameStateNodeComponent from '../nodes/game-state/create-game-state';
 import LightOnNodeComponent from './../nodes/lights/light-on';
 import LightSetNodeComponent from './../nodes/lights/light-set';
+import GetGameStateNodeComponent from '../nodes/state/get-game-state';
+import SetGameStateNodeComponent from '../nodes/state/set-game-state';
+import GetPlayerStateNodeComponent from '../nodes/state/get-player-state';
+import SetPlayerStateNodeComponent from '../nodes/state/set-player-state';
+import FormulaNodeComponent from '../nodes/formula/formula';
 
 const flowNodeTypes = {
     [NodeTypes.Variable]: VariableNode,
     [NodeTypes.Branch]: BranchNode,
     [NodeTypes.Hit]: HitNodeComponent,
-    [NodeTypes.CreateGameState]: CreateGameStateNodeComponent,
+    [NodeTypes.GetGameState]: GetGameStateNodeComponent,
+    [NodeTypes.SetGameState]: SetGameStateNodeComponent,
+    [NodeTypes.GetPlayerState]: GetPlayerStateNodeComponent,
+    [NodeTypes.SetPlayerState]: SetPlayerStateNodeComponent,
     [NodeTypes.LightOn]: LightOnNodeComponent,
-    [NodeTypes.LightSet]: LightSetNodeComponent
+    [NodeTypes.LightSet]: LightSetNodeComponent,
+    [NodeTypes.Formula]: FormulaNodeComponent,
   }
 
 interface State {

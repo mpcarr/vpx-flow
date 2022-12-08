@@ -14,14 +14,14 @@ type Props = {
     value: string;
 }
 
-type CreateGameStateNodeProps<T = any> = NodeProps & {
+type GetGameStateNodeProps<T = any> = NodeProps & {
     updateNodeData: any
 }
-class CreateGameStateNode extends React.Component<CreateGameStateNodeProps<Props>, State> {
+class GetGameStateNode extends React.Component<GetGameStateNodeProps<Props>, State> {
 
     value: (number | string | undefined) = undefined;
 
-    constructor(props: CreateGameStateNodeProps<Props>) {
+    constructor(props: GetGameStateNodeProps<Props>) {
         super(props);
         this.state = {}
     }
@@ -35,7 +35,7 @@ class CreateGameStateNode extends React.Component<CreateGameStateNodeProps<Props
 
     render() {
         return (<>
-            <NodeContainer color="slate" header={<NodeHeader label="Create Game State" color="slate" />}>
+            <NodeContainer color="slate" header={<NodeHeader label="Get Game State" color="slate" />}>
                 <Box>
                     <TextField type="text" className='bg-white' label="Name" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, value: e.target.value }) }} />
                 </Box>
@@ -50,8 +50,8 @@ const mapStateToProps = (state: any) => ({
 
 })
 
-const CreateGameStateNodeComponent = connect(mapStateToProps, {
+const GetGameStateNodeComponent = connect(mapStateToProps, {
     updateNodeData
-})(CreateGameStateNode)
+})(GetGameStateNode)
 
-export default CreateGameStateNodeComponent
+export default GetGameStateNodeComponent

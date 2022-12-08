@@ -92,32 +92,36 @@ class FlowCodeView extends React.Component<Props, State> {
                 code+=`${depth}Dim ${node.id} : ${node.id} = "${node.data.value}"\n`;
                 break;
             }
-            case NodeTypes.CreateGameState: {
-                const flowInEdges = edges.filter(e => e.target === node.id && e.targetHandle === 'flowIn');
-                if(flowInEdges.length>1)
-                {
-                    //sub
-                    if(!codeTree.find(c=>c.nodeId===node.id))
-                    {
-                        const newSub = `Sub ${node.id}()\n\tDim ${node.data.value} : Set ${node.data.value} = CreateObject("Scripting.Dictionary")\nEnd Sub\n\n`;
-                        codeTree.push({nodeId: node.id, code: newSub});
-                    }
-                    code+=`${depth}${node.id}\n`;
-                }else{    
-                    code+=`${depth}Dim ${node.data.value} : Set ${node.data.value} = CreateObject("Scripting.Dictionary")\n`;
-                    //codeTree.push({ code: `Sub ${node.id}()\n\tDim ${node.data.value} : Set ${node.data.value} = CreateObject("Scripting.Dictionary")\nEnd Sub\n\n`, nodeId: node.id });
-                }
+            // case NodeTypes.CreateGameState: {
+            //     const flowInEdges = edges.filter(e => e.target === node.id && e.targetHandle === 'flowIn');
+            //     if(flowInEdges.length>1)
+            //     {
+            //         //sub
+            //         if(!codeTree.find(c=>c.nodeId===node.id))
+            //         {
+            //             const newSub = `Sub ${node.id}()\n\tDim ${node.data.value} : Set ${node.data.value} = CreateObject("Scripting.Dictionary")\nEnd Sub\n\n`;
+            //             codeTree.push({nodeId: node.id, code: newSub});
+            //         }
+            //         code+=`${depth}${node.id}\n`;
+            //     }else{    
+            //         code+=`${depth}Dim ${node.data.value} : Set ${node.data.value} = CreateObject("Scripting.Dictionary")\n`;
+            //         //codeTree.push({ code: `Sub ${node.id}()\n\tDim ${node.data.value} : Set ${node.data.value} = CreateObject("Scripting.Dictionary")\nEnd Sub\n\n`, nodeId: node.id });
+            //     }
 
-                const flowOutEdge = edges.find(e => e.source === node.id && e.sourceHandle === 'flowOut');
-                console.log(flowOutEdge);
-                const nextNode = nodes.find(n => n.id === flowOutEdge?.target);
-                console.log(nextNode);
-                if (nextNode)
-                    code+=this.compileNode(nextNode, depth, codeTree);
-                break;
-            }
+            //     const flowOutEdge = edges.find(e => e.source === node.id && e.sourceHandle === 'flowOut');
+            //     console.log(flowOutEdge);
+            //     const nextNode = nodes.find(n => n.id === flowOutEdge?.target);
+            //     console.log(nextNode);
+            //     if (nextNode)
+            //         code+=this.compileNode(nextNode, depth, codeTree);
+            //     break;
+            // }
             case NodeTypes.LightOn: {                
                 code+=`${depth}lController.LightOn ${node.data.value}\n`;
+                break;
+            }
+            case NodeTypes.LightSet: {                
+                code+=`${depth}lController.LightSet ${node.data.light.id}, Array(${this.colorToRGB(node.data.color)},${this.colorToRGB(node.data.colorFull)}, ${node.data.blinkPattern}, ${node.data.fadeUp}, ${node.data.fadeDown}\n`;
                 break;
             }
             default: {
@@ -126,6 +130,14 @@ class FlowCodeView extends React.Component<Props, State> {
         }
         return code;
     }
+
+    colorToRGB(color:string) {
+        if(!color) return 'Null';
+        const r = parseInt(color.substr(1,2), 16)
+        const g = parseInt(color.substr(3,2), 16)
+        const b = parseInt(color.substr(5,2), 16)
+        return `RGB(${r}, ${g}, ${b})`;
+      }
 
     render() {
         const codeTree:any = this.compile()
