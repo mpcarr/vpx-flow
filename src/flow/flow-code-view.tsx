@@ -27,14 +27,14 @@ class FlowCodeView extends React.Component<Props, State> {
 
         //1.) find endtry nodes.
         const entryNodes = nodes.filter((n: Node) => EntryNodeTypes.has(n.type as string));
-        console.log(entryNodes);
+        //console.log(entryNodes);
 
         const codeTree: Array<any> = [];
         let code = "";
         for (const entryNode of entryNodes) {
             code += this.compileNode(entryNode, "", codeTree);
             codeTree.push({nodeId: entryNode.id, code:code});
-            console.log(code);
+            //console.log(code);
         }
 
         return codeTree;
@@ -62,7 +62,7 @@ class FlowCodeView extends React.Component<Props, State> {
                 const flowOutTrueEdge = edges.find(e => e.source === node.id && e.sourceHandle === 'flowOutTrue');
                 const flowOutFalseEdge = edges.find(e => e.source === node.id && e.sourceHandle === 'flowOutFalse');
                 const dataInEdge = edges.find(e => e.target === node.id && e.targetHandle === 'dataIn');
-                console.log(dataInEdge);
+                //console.log(dataInEdge);
                 //codeTree.push({ code: `Sub ${node.id}()\n\tIf ${dataInEdge?.source} = True Then\n\t\t${flowOutTrueEdge?.target || ''}\n\tElse\n\t\t${flowOutFalseEdge?.target || ''}\n\tEnd If\nEnd Sub\n\n`, nodeId: node.id });
                 
                 const dataInNode = nodes.find(n => n.id === dataInEdge?.source);
@@ -116,12 +116,58 @@ class FlowCodeView extends React.Component<Props, State> {
             //         code+=this.compileNode(nextNode, depth, codeTree);
             //     break;
             // }
+            case NodeTypes.Formula: {                
+                
+                const dataInAEdge = edges.find(e => e.target === node.id && e.targetHandle === 'DataIn0');
+                const dataInBEdge = edges.find(e => e.target === node.id && e.targetHandle === 'DataIn1');
+                console.log(dataInAEdge);
+                const dataInANode = nodes.find(n => n.id === dataInAEdge?.source);
+                let dataInAValue = "";
+                if (dataInANode){
+                    dataInAValue = this.compileNode(dataInANode, "", codeTree);
+                }
+
+                const dataInBNode = nodes.find(n => n.id === dataInBEdge?.source);
+                let dataInBValue = "";
+                if (dataInBNode){
+                    dataInBValue = this.compileNode(dataInBNode, "", codeTree);
+                }
+
+                let formula = node.data.value.replace("a", dataInAValue).replace("b", dataInBValue);
+
+                code+=`(${formula})`;
+                break;
+            }
             case NodeTypes.LightOn: {                
                 code+=`${depth}lController.LightOn ${node.data.value}\n`;
                 break;
             }
             case NodeTypes.LightSet: {                
                 code+=`${depth}lController.LightSet ${node.data.light.id}, Array(${this.colorToRGB(node.data.color)},${this.colorToRGB(node.data.colorFull)}, ${node.data.blinkPattern}, ${node.data.fadeUp}, ${node.data.fadeDown}\n`;
+                break;
+            }
+            case NodeTypes.LightShotLit: {                
+                code+=`${depth}Dim ${node.id} : ${node.id} = lController.IsShotLit ${node.data.value}\n`;
+                break;
+            }
+            case NodeTypes.GetGameState: {                
+                code+=`${depth}GetGameState(${node.data.value})`;
+                break;
+            }
+            case NodeTypes.GetPlayerState: {                
+                code+=`${depth}GetPlayerState(${node.data.value})`;
+                break;
+            }
+            case NodeTypes.SetPlayerState: {    
+                
+                const dataInEdge = edges.find(e => e.target === node.id && e.targetHandle === 'dataIn');
+                const dataInNode = nodes.find(n => n.id === dataInEdge?.source);
+                let dataInValue = "";
+                if (dataInNode){
+                    dataInValue = this.compileNode(dataInNode, depth, codeTree);
+                }
+
+                code+=`${depth}SetPlayerState "${node.data.value}", ${dataInValue}\n`;
                 break;
             }
             default: {

@@ -37,7 +37,7 @@ class SetGameStateNode extends React.Component<SetGameStateNodeProps<Props>, Sta
         return (<>
             <NodeContainer header={<NodeHeader label="Set Game State" color="slate" />}>
                 <Box>
-                    <TextField type="text" className='bg-white' label="Name" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, value: e.target.value }) }} />
+                    <TextField type="text" className='bg-white' label="Name" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, data:{value: e.target.value }}) }} />
                 </Box>
             </NodeContainer>
             <InHandle id="flowIn"/>

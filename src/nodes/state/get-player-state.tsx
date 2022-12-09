@@ -37,7 +37,7 @@ class GetPlayerStateNode extends React.Component<GetPlayerStateNodeProps<Props>,
         return (<>
             <NodeContainer header={<NodeHeader label="Get Player State" color="red" />}>
                 <Box>
-                    <TextField type="text" className='bg-white' label="Value" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, value: e.target.value }) }} />
+                    <TextField type="text" className='bg-white' label="Value" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, data:{value: e.target.value} }) }} />
                 </Box>
             </NodeContainer>
             <InHandle id="flowIn"/>

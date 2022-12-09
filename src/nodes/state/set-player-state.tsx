@@ -39,7 +39,7 @@ class SetPlayerStateNode extends React.Component<SetPlayerStateNodeProps<Props>,
             <NodeContainer header={<NodeHeader label="Set Player State" color="red" />}>
                 <Box>
                     <Stack direction={"row"} className="relative">
-                        <TextField type="text" className='bg-white' label="Name" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, value: e.target.value }) }} />
+                        <TextField type="text" className='bg-white' label="Name" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, data:{value: e.target.value }}) }} />
                         <DataHandle id="dataIn" />
                     </Stack>
                 </Box>
