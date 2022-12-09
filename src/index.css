@@ -14,8 +14,8 @@ html,body,#root{
 }
 
 .react-flow__connection-path, .react-flow__edge-path {
-    stroke-width: 6;
-    stroke: blueviolet;
+    stroke-width: 4;
+    stroke: #171717;
 }
 
 .react-flow__node{
@@ -24,6 +24,11 @@ html,body,#root{
 
 .node-drag-header{
     cursor: grab !important;
+}
+
+.MuiFilledInput-root, .MuiInputLabel-filled{
+    background-color: #475569 !important;
+    color: white !important;
 }
 
 /* .react-flow__handle{
