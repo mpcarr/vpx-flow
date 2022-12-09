@@ -42,7 +42,7 @@ class LightSetNode extends React.Component<LightSetNodeProps<Props>, State> {
 
     render() {
         return (<>
-            <NodeContainer color="blue" header={<NodeHeader label="Light Set" color="blue" />}>
+            <NodeContainer header={<NodeHeader label="Light Set" color="blue" />}>
                 <Box>
                     <Stack className='mt-4' gap={1}>
                         <Stack direction={"row"} className="relative">

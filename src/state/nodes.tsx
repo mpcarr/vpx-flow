@@ -9,6 +9,7 @@ const initialState = [
   {label: "Hit", type: NodeTypes.Hit},
   {label: "LightOn", type: NodeTypes.LightOn},
   {label: "LightSet", type: NodeTypes.LightSet},
+  {label: "LightShotLit", type: NodeTypes.LightShotLit},
   {label: "SetGameState", type: NodeTypes.SetGameState},
   {label: "SetPlayerState", type: NodeTypes.SetPlayerState},
   {label: "Timer", type: NodeTypes.Timer},

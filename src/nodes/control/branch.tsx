@@ -53,7 +53,7 @@ export class BranchNode extends React.Component<NodeProps<Propsd>, State> {
     render() {
         return (
             <>
-                <NodeContainer color="slate" header={<NodeHeader label="Branch" color="slate" />}>
+                <NodeContainer header={<NodeHeader label="Branch" color="slate" />}>
                     <Box className=''>
                         <Stack
                             direction="column"

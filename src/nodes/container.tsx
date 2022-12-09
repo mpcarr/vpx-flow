@@ -4,7 +4,6 @@ import React from 'react';
 type Props = {
     header: JSX.Element
     children: JSX.Element
-    color: string;
 }
 
 export class NodeContainer extends React.Component<Props> {

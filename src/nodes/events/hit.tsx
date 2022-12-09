@@ -27,7 +27,7 @@ class HitNode extends React.Component<HitNodeProps<Props>, State> {
     render() {
         console.log(this.props);
         return (<>
-            <NodeContainer color="yellow" header={<NodeHeader label="Hit" color="yellow" />}>
+            <NodeContainer header={<NodeHeader label="Hit" color="yellow" />}>
                 <Box>                        
                     <TextField type="text" className='bg-white' label="Filled" variant="filled" value={this.props.data.value} onChange={(e)=>{this.props.updateNodeData({id: this.props.id, data: {value: e.target.value}})}} />
                 </Box>

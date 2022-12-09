@@ -1,4 +1,4 @@
-import { Box, TextField } from '@mui/material';
+import { Box, Stack, TextField } from '@mui/material';
 import React from 'react';
 import { connect } from 'react-redux';
 import { NodeProps } from 'reactflow';
@@ -7,6 +7,7 @@ import { NodeContainer } from '../container';
 import { NodeHeader } from '../header';
 import { InHandle } from '../handles/in-handle';
 import { NextHandle } from '../handles/next-handle';
+import { DataHandle } from '../handles/data-handle';
 
 interface State { }
 
@@ -35,12 +36,16 @@ class SetPlayerStateNode extends React.Component<SetPlayerStateNodeProps<Props>,
 
     render() {
         return (<>
-            <NodeContainer color="slate" header={<NodeHeader label="Set Player State" color="slate" />}>
+            <NodeContainer header={<NodeHeader label="Set Player State" color="red" />}>
                 <Box>
-                    <TextField type="text" className='bg-white' label="Name" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, value: e.target.value }) }} />
+                    <Stack direction={"row"} className="relative">
+                        <TextField type="text" className='bg-white' label="Name" variant="filled" value={this.props.data.value} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, value: e.target.value }) }} />
+                        <DataHandle id="dataIn" />
+                    </Stack>
                 </Box>
             </NodeContainer>
-            <InHandle id="flowIn"/>
+
+            <InHandle id="flowIn" />
             <NextHandle id="flowOut" />
         </>);
     }

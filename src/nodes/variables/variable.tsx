@@ -42,7 +42,7 @@ class VariableNode extends React.Component<VariableNodeProps<Props>, State> {
 
     render() {
         return (<>
-            <NodeContainer color="slate" header={<NodeHeader label="Variable" color="slate" />}>
+            <NodeContainer header={<NodeHeader label="Variable" color="slate" />}>
                 <Box>
                     <Stack direction={"row"} className="relative">
                         <TextField type="text" className='bg-white' label="Value" variant="filled" value={this.props.data.value} onFocus={(e) => { e.stopPropagation() }} onClick={(e) => e.stopPropagation()} onChange={(e) => { this.props.updateNodeData({ id: this.props.id, data: { value: e.target.value } }) }} />

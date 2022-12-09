@@ -13,6 +13,7 @@ import SetGameStateNodeComponent from '../nodes/state/set-game-state';
 import GetPlayerStateNodeComponent from '../nodes/state/get-player-state';
 import SetPlayerStateNodeComponent from '../nodes/state/set-player-state';
 import FormulaNodeComponent from '../nodes/formula/formula';
+import LightShotLitNodeComponent from '../nodes/lights/light-shot-lit';
 
 const flowNodeTypes = {
     [NodeTypes.Variable]: VariableNode,
@@ -24,6 +25,7 @@ const flowNodeTypes = {
     [NodeTypes.SetPlayerState]: SetPlayerStateNodeComponent,
     [NodeTypes.LightOn]: LightOnNodeComponent,
     [NodeTypes.LightSet]: LightSetNodeComponent,
+    [NodeTypes.LightShotLit]: LightShotLitNodeComponent,
     [NodeTypes.Formula]: FormulaNodeComponent,
   }
 

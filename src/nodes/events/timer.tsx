@@ -29,7 +29,7 @@ class TimerNode extends React.Component<TimerNodeProps<Props>, State> {
     render() {
         console.log(this.props);
         return (<>
-            <NodeContainer color={this.nodeColor} header={<NodeHeader label="Timer" color={this.nodeColor} />}>
+            <NodeContainer header={<NodeHeader label="Timer" color={this.nodeColor} />}>
                 <Box>                        
                     <TextField type="text" fullWidth label="Filled" variant="filled" value={this.props.data.value} onChange={(e)=>{this.props.updateNodeData({id: this.props.id, data: {value: e.target.value}})}} />
                 </Box>

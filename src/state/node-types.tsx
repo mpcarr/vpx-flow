@@ -1,15 +1,16 @@
 export enum NodeTypes {
-    Variable = "variable",
-    Branch = "branch",
-    Hit = "hit",
-    LightOn = "lightOn",
-    LightSet = "lightSet",
-    Timer = "timer",
-    GetGameState = "getGameState",
-    SetGameState = "setGameState",
-    GetPlayerState = "getPlayerState",
-    SetPlayerState = "setPlayerState",
-    Formula = "formula"
+  Variable = "variable",
+  Branch = "branch",
+  Hit = "hit",
+  LightOn = "lightOn",
+  LightSet = "lightSet",
+  Timer = "timer",
+  GetGameState = "getGameState",
+  SetGameState = "setGameState",
+  GetPlayerState = "getPlayerState",
+  SetPlayerState = "setPlayerState",
+  Formula = "formula",
+  LightShotLit = "lightShotLit"
 }
 
 export enum NodeCompileType {
